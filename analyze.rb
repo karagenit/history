@@ -14,4 +14,6 @@ Dir.glob('data/*').each do |file|
   end
 end
 
+data = data.sort_by{ |name, count| count }.reverse
+
 p data
