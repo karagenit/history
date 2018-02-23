@@ -1,8 +1,14 @@
-# history
-Tracking &amp; Graphing my Bash History
+# History
+Tracking & Graphing my Bash History
 
-## Analytics
+## Usage
 
-Most popular commands (list of top 10 or so), and either Pie chart or Bar Graph next to it
+`save.sh` moves my `~/.bash_history` into the `data/` directory. `analyze.rb` crunches the numbers and spits out a `results.json` file. Eventually, `graph.r` will plot the data.
 
-Most popular languages - group together commands like gcc, make, etc to get command usage by language.
+## Visualizations
+
+**Top ~10 Commands**
+
+**Total Commands per Week (over time)**
+
+**Each of Top 10 Commands per Week**
