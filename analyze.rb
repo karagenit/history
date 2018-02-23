@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'json'
+
 data = {}
 aliases = {}
 
@@ -32,3 +34,5 @@ puts "------------------------------"
 data.first(20).each_with_index do |(name, count), index|
   printf "#%02d: %-12s (%04d)\n", index+1, name, count
 end
+
+IO.write("results.json", data.to_json)
