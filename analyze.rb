@@ -26,6 +26,9 @@ end
 
 data = data.sort_by{ |name, count| -count }.to_h
 
-data.first(10).each_with_index do |(name, count), index|
-  printf "#%02d: %-8s (%03d)\n", index+1, name, count
+puts "Total Lines Analyzed: " + data.values.reduce(:+).to_s
+puts "------------------------------"
+
+data.first(20).each_with_index do |(name, count), index|
+  printf "#%02d: %-12s (%04d)\n", index+1, name, count
 end
