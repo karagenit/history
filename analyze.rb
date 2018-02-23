@@ -14,6 +14,9 @@ Dir.glob('data/*').each do |file|
   end
 end
 
-data = data.sort_by{ |name, count| count }.reverse
+data = data.sort_by{ |name, count| -count }.to_h
 
-p data
+data.first(10).each_with_index do |(name, count), index|
+  #puts "##{index+1}: #{name}\t(#{count})"
+  printf "#%02d: %-8s (%03d)\n", index+1, name, count
+end
