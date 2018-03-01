@@ -5,10 +5,8 @@ Tracking & Graphing my Bash History
 
 `save.sh` moves my `~/.bash_history` into the `data/` directory. `analyze.rb` crunches the numbers and spits out a `results.json` file. Eventually, `graph.r` will plot the data.
 
-## Visualizations
+## Visualization Ideas
 
-**Top ~10 Commands**
-
-**Total Commands per Week (over time)**
-
-**Each of Top 10 Commands per Week**
+- Top ~10 Commands
+- Total Commands per Week (over time)
+- Each of Top 10 Commands per Week
