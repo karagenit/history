@@ -10,3 +10,9 @@ Tracking & Graphing my Bash History
 - Top ~10 Commands
 - Total Commands per Week (over time)
 - Each of Top 10 Commands per Week
+
+## Results
+
+Obviously, I'm not going to commit the `data/` directory with all of my bash history, nor will I commit the `results.json` file. However, here is a nice picture:
+
+![results](./results.png)
