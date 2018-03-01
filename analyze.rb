@@ -5,6 +5,28 @@ require 'json'
 data = {}
 aliases = {}
 
+# replace *.rb with ruby etc.
+def sub_scripts(command)
+  if command.start_with? './'
+    ext = command[/.+\.([A-Za-z]+)$/,1]
+    case ext
+    when 'rb'
+      'ruby'
+    when 'py'
+      'python'
+    when 'sh'
+      'bash'
+    when 'r'
+      'Rscript'
+    else
+      ext
+    end
+  else
+    command
+  end
+end
+
+# load bash aliases for substitution
 File.readlines('/home/caleb/.bash_aliases').each do |line|
   # TODO: might be nil if no match found, log this line
   ali, command = line.match(/alias ([A-Za-z0-9]{1,})='([A-Za-z0-9\/]{1,})[\s']/i).captures
@@ -17,6 +39,7 @@ Dir.glob('data/*').each do |file|
 
     # Substitute Aliases
     command = aliases[command] unless aliases[command].nil?
+    command = sub_scripts(command)
 
     if data[command].nil?
       data[command] = 1
