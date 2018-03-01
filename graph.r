@@ -13,4 +13,5 @@ data = data[1:10,]
 
 x11()
 barplot(data, main = "Most Popular Bash Commands", ylab = "# of Recorded Uses in .bash_history")
+dev.print(png, "results.png", width=500, height=500)
 Sys.sleep(1000)
