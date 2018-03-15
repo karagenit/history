@@ -7,7 +7,7 @@ aliases = {}
 
 # replace *.rb with ruby etc.
 def sub_scripts(command)
-  if command.start_with? './'
+  if command && command.start_with?('./')
     ext = command[/.+\.([A-Za-z]+)$/,1]
     case ext
     when 'rb'
