@@ -26,8 +26,8 @@ for (key in names(data)) {
     gitvals[[key]] <- data[[key]][["git"]]
 }
 
-# Prepare for Graphing
-gitvals = unlist(gitvals)
+# Prepare for Graphing - sort by List names
+gitvals = unlist(gitvals[order(names(gitvals))])
 
 x11()
 barplot(gitvals, main = "Git Usage Over Time")
