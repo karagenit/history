@@ -6,12 +6,14 @@ library("rjson")
 data <- fromJSON(file = "results.json")
 
 # Magically converts this to one dataframe - thanks SO
-data = do.call("rbind", data)
+top = do.call("rbind", data$totals)
+
+print(top);
 
 # Let's just plot the first 10 rows
-data = data[1:10,]
+top = top[1:10,]
 
 x11()
-barplot(data, main = "Most Popular Bash Commands", ylab = "# of Recorded Uses in .bash_history")
+barplot(top, main = "Most Popular Bash Commands", ylab = "# of Recorded Uses in .bash_history")
 dev.print(png, "results.png", width=500, height=500)
 Sys.sleep(1000)
