@@ -13,7 +13,7 @@ top = top[1:10,]
 
 x11()
 barplot(top, main = "Most Popular Bash Commands", ylab = "# of Recorded Uses in .bash_history")
-dev.print(png, "results.png", width=500, height=500)
+dev.print(png, "results.png", width=600, height=500)
 
 # Delete the totals - we only want the dates
 data$totals <- NULL
