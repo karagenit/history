@@ -27,7 +27,7 @@ def sub_scripts(command)
 end
 
 # load bash aliases for substitution
-File.readlines('/home/caleb/.bash_aliases').each do |line|
+File.readlines("#{Dir.home}/.bash_aliases").each do |line|
   # TODO: might be nil if no match found, log this line
   ali, command = line.match(/alias ([A-Za-z0-9]{1,})='([A-Za-z0-9\/]{1,})[\s']/i).captures
   aliases[ali] = command
