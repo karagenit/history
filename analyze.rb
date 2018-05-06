@@ -17,7 +17,7 @@ def sub_scripts(command)
     when 'sh'
       'bash'
     when 'r'
-      'Rscript'
+      'R'
     else
       ext
     end
