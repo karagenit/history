@@ -2,7 +2,8 @@
 
 require 'json'
 
-data = { totals: {} }
+totals = {}
+bydate = {}
 aliases = {}
 
 # replace *.rb with ruby etc.
@@ -44,23 +45,24 @@ Dir.glob('data/*').each do |file|
     command = aliases[command] unless aliases[command].nil?
     command = sub_scripts(command)
 
-    data[:totals][command] = data[:totals][command].to_i + 1
+    totals[command] = totals[command].to_i + 1
 
     # NOTE Change How This is Found to Change Bin Width
-    bin = year + '-' + month + '-' + (day.to_i/8).to_i.to_s
+    bin = year + '-' + month + '-' + ((day.to_i/8).to_i * 8 + 1).to_s
 
-    data[bin] = {} if data[bin].nil?
-    data[bin][command] = data[bin][command].to_i + 1
+    bydate[command] = {} if bydate[command].nil?
+    bydate[command][bin] = bydate[command][bin].to_i + 1
   end
 end
 
-data[:totals] = data[:totals].sort_by{ |name, count| -count }.to_h
+totals = totals.sort_by{ |name, count| -count }.to_h
 
-puts "Total Lines Analyzed: " + data[:totals].values.reduce(:+).to_s
+puts "Total Lines Analyzed: " + totals.values.reduce(:+).to_s
 puts "------------------------------"
 
-data[:totals].first(20).each_with_index do |(name, count), index|
+totals.first(20).each_with_index do |(name, count), index|
   printf "#%02d: %-12s (%04d)\n", index+1, name, count
 end
 
-IO.write("results.json", data.to_json)
+File.write("totals.json", totals.to_json)
+File.write("dates.json", bydate.to_json)
