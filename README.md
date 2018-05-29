@@ -8,13 +8,13 @@ Tracking & Graphing my Bash History
 I customized a few of my `.bashrc` configs to work better with this:
 
 ```
-# Don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth
+# Don't store lines starting with space in the history.
+HISTCONTROL=ignorespace
 
-# Append to the history file, don't overwrite it
+# Append to the history file, don't overwrite it.
 shopt -s histappend
 
-# Sizes for the .bash_history file
+# Sizes for the .bash_history file.
 HISTSIZE=5000
 HISTFILESIZE=25000
 ```
