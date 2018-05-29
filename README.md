@@ -24,7 +24,7 @@ HISTFILESIZE=25000
 To make things easier, I set up a cron job to automatically run the `save.sh` script periodically (in my case, once every other hour). The crontab entry looks like:
 
 ```
-0 */2 * * * /path/to/directory/save.sh
+0 * * * * /path/to/directory/save.sh
 ```
 
 > **NOTE:** You must add the crontab entry to *your user's* crontab (such as by running `crontab -e`), as the save script relies on `$HOME` being set to your home directory.
@@ -33,8 +33,8 @@ To make things easier, I set up a cron job to automatically run the `save.sh` sc
 
 - `status.sh` gives you the current number of unsaved lines in the current `~/.bash_history` file
 - `save.sh` moves the `~/.bash_history` file into the `data/` directory with the current timestamp
-- `analyze.rb` parses all of the saved files, lists your most popular commands, and spits out a `results.json` file
-- `graph.r` visually displays the `results.json` file (including a bar plot of your top 10 commands and your usage of git over time - more coming soon!)
+- `analyze.rb` parses all of the saved files, lists your most popular commands, and spits out the JSON files containing the results
+- `graph.r` visually displays the JSON files
 
 ## Results
 
