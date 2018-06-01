@@ -19,6 +19,12 @@ command = "git"
 command.data = dates[[command]]
 
 command.data = data.frame(unlist(command.data))
-rownames(command.data) = as.Date(rownames(command.data), "%Y-%m-%d")
+command.data$Date = as.Date(rownames(command.data), "%Y-%m-%d")
+colnames(command.data) = c("Count", "Date")
+rownames(command.data) = c()
+command.data = command.data[order(command.data$Date),]
+
+x11()
+plot(Count ~ Date, command.data, xaxt="n", type="o")
 
 Sys.sleep(1000)
