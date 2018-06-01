@@ -64,5 +64,5 @@ totals.first(20).each_with_index do |(name, count), index|
   printf "#%02d: %-12s (%04d)\n", index+1, name, count
 end
 
-File.write("totals.json", totals.to_json)
-File.write("dates.json", bydate.to_json)
+File.write("output/totals.json", totals.to_json)
+File.write("output/dates.json", bydate.to_json)

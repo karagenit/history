@@ -2,7 +2,7 @@
 
 library("rjson")
 
-totals <- fromJSON(file = "totals.json")
+totals <- fromJSON(file = "output/totals.json")
 totals = do.call("rbind", totals)
 top = totals[1:10,]
 
@@ -12,9 +12,9 @@ barplot(top,
         ylab = "# of Recorded Uses in .bash_history",
         col = "black",
         density = 30)
-dev.print(png, "totals.png", width=600, height=500)
+dev.print(png, "output/totals.png", width=600, height=500)
 
-dates <- fromJSON(file = "dates.json")
+dates <- fromJSON(file = "output/dates.json")
 command = "git"
 command.data = dates[[command]]
 
@@ -27,6 +27,6 @@ command.data = command.data[order(command.data$Date),]
 x11()
 plot(Count ~ Date, command.data, xaxt="n", type="o")
 axis(1, command.data$Date, format(command.data$Date, "%b %d"), cex.axis = .7)
-dev.print(png, "dates.png", width=800, height=500)
+dev.print(png, "output/dates.png", width=800, height=500)
 
 Sys.sleep(1000)
