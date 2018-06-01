@@ -41,4 +41,4 @@ To make things easier, I set up a cron job to automatically run the `save.sh` sc
 Obviously, I'm not going to commit the `data/` directory with all of my bash history. However, here is a couple nice pictures:
 
 ![Totals](output/totals.png)
-![Git by Date](output/dates.png)
+![Git by Date](output/git.png)
