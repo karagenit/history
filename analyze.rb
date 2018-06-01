@@ -48,7 +48,7 @@ Dir.glob('data/*').each do |file|
     totals[command] = totals[command].to_i + 1
 
     # NOTE Change How This is Found to Change Bin Width
-    bin = year + '-' + month + '-' + ((day.to_i/8).to_i * 8 + 1).to_s
+    bin = year + '-' + month + '-' + ((day.to_i/15).to_i * 15 + 1).to_s
 
     bydate[command] = {} if bydate[command].nil?
     bydate[command][bin] = bydate[command][bin].to_i + 1

@@ -26,5 +26,6 @@ command.data = command.data[order(command.data$Date),]
 
 x11()
 plot(Count ~ Date, command.data, xaxt="n", type="o")
+axis(1, command.data$Date, format(command.data$Date, "%b %d"), cex.axis = .7)
 
 Sys.sleep(1000)
