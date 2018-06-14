@@ -29,9 +29,8 @@ end
 
 # load bash aliases for substitution
 File.readlines("#{Dir.home}/.bash_aliases").each do |line|
-  # TODO: might be nil if no match found, log this line
-  ali, command = line.match(/alias ([A-Za-z0-9]{1,})='([A-Za-z0-9\/]{1,})[\s']/i).captures
-  aliases[ali] = command
+  ali, command = line.match(/alias ([A-Za-z0-9]{1,})='([A-Za-z0-9\/]{1,})[\s']/i)&.captures
+  aliases[ali] = command unless ali.nil? || command.nil?
 end
 
 Dir.glob('data/*').each do |file|
