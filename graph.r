@@ -19,8 +19,9 @@ dev.print(png, "output/totals.png", width=600, height=500)
 # BY DATE STUFF
 
 dates <- fromJSON(file = "output/dates.json")
-commands = c("git", "ls", "vim", "exit")
-colors = c("green", "blue", "red", "black")
+# TODO: automatically use top 5 commands
+commands = c("git", "ls", "vim", "exit", "cd")
+colors = c("darkgreen", "blue", "red", "black", "orange")
 x11()
 
 # Setup plot & axis
@@ -48,8 +49,8 @@ for (i in 1:length(commands)) {
     rownames(command.data) = c()
     command.data = command.data[order(command.data$Date),]
     points(command.data$Date, command.data$Count, type="o", col=color)
-# TODO: key
 }
+legend(x="topright", legend=commands, col=colors, lty=1, cex=0.8)
 
 dev.print(png, "output/dates.png", width=800, height=500)
 
