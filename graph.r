@@ -20,6 +20,7 @@ dev.print(png, "output/totals.png", width=600, height=500)
 
 dates <- fromJSON(file = "output/dates.json")
 commands = c("git", "exit")
+colors = c("green", "blue")
 x11()
 
 # Setup plot & axis
@@ -37,13 +38,17 @@ plot(Count ~ Date, commands.data, xaxt="n", type="n", main="Command Usage Over T
 axis(1, commands.data$Date, format(commands.data$Date, "%b %d"), cex.axis = .7)
 
 # Plot points
-for (command in commands) {
+for (i in 1:length(commands)) {
+    command = commands[i]
+    color = colors[i]
+
     command.data = data.frame(unlist(dates[[command]]))
     command.data$Date = as.Date(rownames(command.data), "%Y-%m-%d")
     colnames(command.data) = c("Count", "Date")
     rownames(command.data) = c()
     command.data = command.data[order(command.data$Date),]
-    points(command.data$Date, command.data$Count, type="o")
+    points(command.data$Date, command.data$Count, type="o", col=color)
+# TODO: key
 }
 
 dev.print(png, "output/dates.png", width=800, height=500)
