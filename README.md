@@ -1,6 +1,14 @@
 # History
 Tracking & Graphing my Bash History
 
+![Commands by Date](output/dates.png)
+
+## Requirements
+
+- Bash (duh)
+- Ruby (>= 2.3.3)
+- R (>= 3.3.3)
+
 ## Setup
 
 ### Bash History
@@ -21,7 +29,7 @@ HISTFILESIZE=25000
 
 ### Cron job
 
-To make things easier, I set up a cron job to automatically run the `save.sh` script periodically (in my case, once every other hour). The crontab entry looks like:
+To make things easier, I set up a cron job to automatically run the `save.sh` script periodically (in my case, once every hour). The crontab entry looks like:
 
 ```
 0 * * * * /path/to/directory/save.sh
@@ -31,14 +39,7 @@ To make things easier, I set up a cron job to automatically run the `save.sh` sc
 
 ## Usage
 
-- `status.sh` gives you the current number of unsaved lines in the current `~/.bash_history` file
+- `status.sh` gives you the current number of unsaved lines in the `~/.bash_history` file
 - `save.sh` moves the `~/.bash_history` file into the `data/` directory with the current timestamp
 - `analyze.rb` parses all of the saved files, lists your most popular commands, and spits out the JSON files containing the results
 - `graph.r` visually displays the JSON files
-
-## Results
-
-Obviously, I'm not going to commit the `data/` directory with all of my bash history. However, here is a couple nice pictures:
-
-![Totals](output/totals.png)
-![Commands by Date](output/dates.png)
