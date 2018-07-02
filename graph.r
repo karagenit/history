@@ -2,6 +2,8 @@
 
 library("rjson")
 
+# TOTALS STUFF
+
 totals <- fromJSON(file = "output/totals.json")
 totals = do.call("rbind", totals)
 top = totals[1:10,]
@@ -14,19 +16,36 @@ barplot(top,
         density = 30)
 dev.print(png, "output/totals.png", width=600, height=500)
 
+# BY DATE STUFF
+
 dates <- fromJSON(file = "output/dates.json")
-command = "git"
-command.data = dates[[command]]
-
-command.data = data.frame(unlist(command.data))
-command.data$Date = as.Date(rownames(command.data), "%Y-%m-%d")
-colnames(command.data) = c("Count", "Date")
-rownames(command.data) = c()
-command.data = command.data[order(command.data$Date),]
-
+commands = c("git", "exit")
 x11()
-plot(Count ~ Date, command.data, xaxt="n", type="o", main=paste(command, "Usage Over Time"))
-axis(1, command.data$Date, format(command.data$Date, "%b %d"), cex.axis = .7)
-dev.print(png, paste("output/", command, ".png", sep=""), width=800, height=500)
+
+# Setup plot & axis
+commands.data = c()
+for (command in commands) {
+    commands.data = c(commands.data, dates[[command]])
+}
+commands.data = commands.data[!duplicated(names(commands.data))]
+commands.data = data.frame(unlist(commands.data))
+commands.data$Date = as.Date(rownames(commands.data), "%Y-%m-%d")
+colnames(commands.data) = c("Count", "Date")
+rownames(commands.data) = c()
+commands.data = commands.data[order(commands.data$Date),]
+plot(Count ~ Date, commands.data, xaxt="n", type="n", main="Command Usage Over Time")
+axis(1, commands.data$Date, format(commands.data$Date, "%b %d"), cex.axis = .7)
+
+# Plot points
+for (command in commands) {
+    command.data = data.frame(unlist(dates[[command]]))
+    command.data$Date = as.Date(rownames(command.data), "%Y-%m-%d")
+    colnames(command.data) = c("Count", "Date")
+    rownames(command.data) = c()
+    command.data = command.data[order(command.data$Date),]
+    points(command.data$Date, command.data$Count, type="o")
+}
+
+dev.print(png, "output/dates.png", width=800, height=500)
 
 Sys.sleep(1000)
