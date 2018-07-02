@@ -19,8 +19,8 @@ dev.print(png, "output/totals.png", width=600, height=500)
 # BY DATE STUFF
 
 dates <- fromJSON(file = "output/dates.json")
-commands = c("git", "exit")
-colors = c("green", "blue")
+commands = c("git", "ls", "vim", "exit")
+colors = c("green", "blue", "red", "black")
 x11()
 
 # Setup plot & axis
