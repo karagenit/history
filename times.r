@@ -2,22 +2,6 @@
 
 library("rjson")
 
-# TOTALS STUFF
-
-totals <- fromJSON(file = "output/totals.json")
-totals = do.call("rbind", totals)
-top = totals[1:10,]
-
-x11()
-barplot(top,
-        main = "Most Popular Bash Commands",
-        ylab = "# of Recorded Uses in .bash_history",
-        col = "black",
-        density = 30)
-dev.print(png, "output/totals.png", width=600, height=500)
-
-# BY DATE STUFF
-
 dates <- fromJSON(file = "output/dates.json")
 # TODO: automatically use top 5 commands
 commands = c("git", "ls", "vim", "exit", "cd")
