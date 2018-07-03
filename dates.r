@@ -53,7 +53,13 @@ for (i in 1:length(commands)) {
            type="o",
            col=color)
 }
-legend(x="topright", legend=commands, col=colors, lty=1, cex=0.8)
+
+legend(x = "topright",
+       legend = commands,
+       col = colors,
+       lty = 1,
+       bty = "n",
+       cex = 0.8)
 
 dev.print(png, "output/dates.png", width=800, height=500)
 
