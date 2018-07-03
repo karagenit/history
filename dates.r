@@ -23,6 +23,7 @@ commands.data = commands.data[order(commands.data$Date),]
 plot(Count ~ Date,
      commands.data,
      xaxt="n",
+     yaxt="n",
      type="n",
      main="Command Usage Over Time")
 axis(2,
