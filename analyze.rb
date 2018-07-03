@@ -1,10 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'date'
 
 totals = {}
 bydate = {}
 aliases = {}
+
+binwidth = 7 #days
 
 # replace *.rb with ruby etc.
 def sub_scripts(command)
@@ -34,9 +37,7 @@ File.readlines("#{Dir.home}/.bash_aliases").each do |line|
 end
 
 Dir.glob('data/*').each do |file|
-  date = file.match(/([0-9-]{10}) (?:[0-9:]{5})\.txt/i).captures[0]
-  year, month, day = date.split('-')
-
+  date = Date.strptime(file, "data/%Y-%m-%d %H:%M.txt")
   File.readlines(file).each do |line|
     command = line.strip.split(/[\s;]/)[0]
 
@@ -46,8 +47,7 @@ Dir.glob('data/*').each do |file|
 
     totals[command] = totals[command].to_i + 1
 
-    # NOTE Change How This is Found to Change Bin Width
-    bin = year + '-' + month + '-' + ((day.to_i/16).to_i * 16 + 1).to_s
+    bin = (date - ((date.yday - 1) % binwidth)).strftime("%Y-%m-%d")
 
     bydate[command] = {} if bydate[command].nil?
     bydate[command][bin] = bydate[command][bin].to_i + 1
