@@ -19,8 +19,23 @@ commands.data$Date = as.Date(rownames(commands.data), "%Y-%m-%d")
 colnames(commands.data) = c("Count", "Date")
 rownames(commands.data) = c()
 commands.data = commands.data[order(commands.data$Date),]
-plot(Count ~ Date, commands.data, xaxt="n", type="n", main="Command Usage Over Time")
-axis(1, commands.data$Date, format(commands.data$Date, "%b %d"), cex.axis = .7)
+
+plot(Count ~ Date,
+     commands.data,
+     xaxt="n",
+     type="n",
+     main="Command Usage Over Time")
+axis(2,
+#    commands.data$Count,
+     lwd = 0,
+     lwd.ticks = 1,
+     at = seq(0, 900, 100)) # TODO: don't hardcode
+axis(1,
+     commands.data$Date,
+     format(commands.data$Date, "%b %d"),
+     lwd = 0,
+     lwd.ticks = 1,
+     cex.axis = .7)
 
 # Plot points
 for (i in 1:length(commands)) {
@@ -32,7 +47,10 @@ for (i in 1:length(commands)) {
     colnames(command.data) = c("Count", "Date")
     rownames(command.data) = c()
     command.data = command.data[order(command.data$Date),]
-    points(command.data$Date, command.data$Count, type="o", col=color)
+    points(command.data$Date,
+           command.data$Count,
+           type="o",
+           col=color)
 }
 legend(x="topright", legend=commands, col=colors, lty=1, cex=0.8)
 
