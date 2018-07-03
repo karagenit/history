@@ -47,7 +47,8 @@ Dir.glob('data/*').each do |file|
 
     totals[command] = totals[command].to_i + 1
 
-    bin = (date - ((date.yday - 1) % binwidth)).strftime("%Y-%m-%d")
+    bindate = (date - ((date.yday - 1) % binwidth))
+    bin = bindate.strftime("%Y-%m-%d")
 
     bydate[command] = {} if bydate[command].nil?
     bydate[command][bin] = bydate[command][bin].to_i + 1
