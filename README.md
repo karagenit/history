@@ -42,4 +42,4 @@ To make things easier, I set up a cron job to automatically run the `save.sh` sc
 - `status.sh` gives you the current number of unsaved lines in the `~/.bash_history` file
 - `save.sh` moves the `~/.bash_history` file into the `data/` directory with the current timestamp
 - `analyze.rb` parses all of the saved files, lists your most popular commands, and spits out the JSON files containing the results
-- `top.r` and `times.r` visually display the JSON files
+- `top.r` and `dates.r` visually display the JSON files
