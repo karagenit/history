@@ -22,6 +22,8 @@ def sub_scripts(command)
       'bash'
     when 'r'
       'R'
+    when nil
+      '(binary)'
     else
       ext
     end
