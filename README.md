@@ -1,5 +1,5 @@
 # History
-Tracking & Graphing my Bash History
+Track, Analyze, and Graph your Bash History!
 
 ![Commands by Date](output/dates.png)
 
