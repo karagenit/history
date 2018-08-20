@@ -2,10 +2,12 @@
 
 library("rjson")
 
-dates <- fromJSON(file = "output/dates.json")
-# TODO: automatically use top 5 commands
-commands = c("git", "ls", "vim", "exit", "cd")
+totals = fromJSON(file = "output/totals.json")
+commands = names(totals)[1:5]
+
+dates = fromJSON(file = "output/dates.json")
 colors = c("darkgreen", "blue", "red", "black", "orange")
+
 x11()
 
 # Setup plot & axis
